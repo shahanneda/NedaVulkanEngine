@@ -49,8 +49,66 @@ private:
     
     void initVulkan() {
         createInstance();
+        pickPhysicalDevice();
     }
+    void pickPhysicalDevice(){
+        VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+        
+        // check for graphics cards with vulkun support
+        uint32_t deviceCount = 0;
+        vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr)
+        
+        if (deviceCount == 0){
+            throw std::runtime_error("no GPU's with Vulkan Support!");
+        }
+        
+        std::vector<VkPhysicalDevice> devices(deviceCount);
+        vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+        
+        for ( const auto& device : devices){
+            if(isDeviceSuitable(device)){
+                physical = device;
+                break;
+            }
+        }
+        if(physicalDevice == VK_NULL_HANDLE){
+            throw std::runtime_error("failed to find suitable GPU!");
+        }
+    }
+    bool isDeviceSuitable(VkPhysicalDevice device){
+        // TODO: later score all the devices and pick dedicated one over other one
+        return true;
+    }
+    
+    struct QueueFamilyIndices {
+        std::optional<uint32_t> graphicsFamily;
+        
+        bool isComplete(){
+            return graphicsFamily.has_value();
+        }
+        
+    };
 
+    //this is for checking what queue families are supported
+    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device) {
+        QueueFamilyIndices indices;
+        uint32_t queueFamilyCount = 0;
+        vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+
+        std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+        vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+        
+        int i = 0;
+        // loop through all the queue families
+        for (const auto& queueFamily : queueFamilies) {
+            if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+                indices.graphicsFamily = i;
+            }
+            i++;
+        }
+        return indices;
+    }
+    
     void mainLoop() {
         while(!glfwWindowShouldClose(window)){
             glfwPollEvents();
@@ -92,16 +150,16 @@ private:
 //
 //             createInfo.pNext = nullptr;
 //         }
-//
+////
 
         
-//        if (enableValidationLayers) {
-//            createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
-//            createInfo.ppEnabledLayerNames = validationLayers.data();
-//        } else {
-//            createInfo.enabledLayerCount = 0;
-//        }
-////
+        if (enableValidationLayers) {
+            createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
+            createInfo.ppEnabledLayerNames = validationLayers.data();
+        } else {
+            createInfo.enabledLayerCount = 0;
+        }
+//
         
         uint32_t extensionCount = 0;
         vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
