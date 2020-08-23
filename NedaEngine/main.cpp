@@ -13,6 +13,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <optional>
 
 
 const uint32_t WIDTH = 800;
@@ -56,7 +57,7 @@ private:
         
         // check for graphics cards with vulkun support
         uint32_t deviceCount = 0;
-        vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr)
+        vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
         
         if (deviceCount == 0){
             throw std::runtime_error("no GPU's with Vulkan Support!");
@@ -67,7 +68,7 @@ private:
         
         for ( const auto& device : devices){
             if(isDeviceSuitable(device)){
-                physical = device;
+                physicalDevice = device;
                 break;
             }
         }
@@ -77,14 +78,17 @@ private:
     }
     bool isDeviceSuitable(VkPhysicalDevice device){
         // TODO: later score all the devices and pick dedicated one over other one
-        return true;
+        QueueFamilyIndices indices = findQueueFamilies(device);
+
+        return indices.isComplete();
     }
     
     struct QueueFamilyIndices {
-        std::optional<uint32_t> graphicsFamily;
+        uint32_t graphicsFamily = 99999999;
         
         bool isComplete(){
-            return graphicsFamily.has_value();
+            // TODO: i had to use optional here, but xcode didnt let me compile properly, so instead this temp solution of 9999...
+            return graphicsFamily != 99999999;
         }
         
     };
@@ -103,6 +107,9 @@ private:
         for (const auto& queueFamily : queueFamilies) {
             if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
                 indices.graphicsFamily = i;
+            }
+            if(indices.isComplete()){
+                break;
             }
             i++;
         }
