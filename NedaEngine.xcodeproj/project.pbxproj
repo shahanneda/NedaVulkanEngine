@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B283DD724F5A9BC006CF02F /* frag.spv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B283DD524F5A9BC006CF02F /* frag.spv */; };
+		6B283DD824F5A9BC006CF02F /* vert.spv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B283DD624F5A9BC006CF02F /* vert.spv */; };
 		6B423B7B24F2065B004D88C3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B423B7A24F2065B004D88C3 /* main.cpp */; };
 		6B7F6A8024F2203400D7266E /* libglfw.3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7F6A7F24F2203400D7266E /* libglfw.3.4.dylib */; };
 		6B7F6A8224F2203C00D7266E /* libglfw.3.4.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 6B7F6A8124F2203C00D7266E /* libglfw.3.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -21,6 +23,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		6B283DD424F5A983006CF02F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				6B283DD724F5A9BC006CF02F /* frag.spv in CopyFiles */,
+				6B283DD824F5A9BC006CF02F /* vert.spv in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6B423B7524F2065B004D88C3 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -38,6 +51,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6B283DD324F5A914006CF02F /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shaders; sourceTree = "<group>"; };
+		6B283DD524F5A9BC006CF02F /* frag.spv */ = {isa = PBXFileReference; lastKnownFileType = file; name = frag.spv; path = NedaEngine/shaders/frag.spv; sourceTree = "<group>"; };
+		6B283DD624F5A9BC006CF02F /* vert.spv */ = {isa = PBXFileReference; lastKnownFileType = file; name = vert.spv; path = NedaEngine/shaders/vert.spv; sourceTree = "<group>"; };
 		6B423B7724F2065B004D88C3 /* NedaEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NedaEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B423B7A24F2065B004D88C3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6B423B8224F207E3004D88C3 /* libvulkan.1.2.148.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.2.148.dylib; path = ../../macOS/lib/libvulkan.1.2.148.dylib; sourceTree = "<group>"; };
@@ -54,6 +70,7 @@
 		6B7F6A8824F2208F00D7266E /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../../macOS/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
 		6B7F6A8D24F241F400D7266E /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMoltenVK.dylib; path = ../../macOS/lib/libMoltenVK.dylib; sourceTree = "<group>"; };
 		6B7F6A8F24F241FB00D7266E /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMoltenVK.dylib; path = ../../macOS/lib/libMoltenVK.dylib; sourceTree = "<group>"; };
+		6BAB5D9C24F5A4F200BDB64C /* compileShaders.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = compileShaders.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +91,8 @@
 		6B423B6E24F2065A004D88C3 = {
 			isa = PBXGroup;
 			children = (
+				6B283DD524F5A9BC006CF02F /* frag.spv */,
+				6B283DD624F5A9BC006CF02F /* vert.spv */,
 				6B7F6A8F24F241FB00D7266E /* libMoltenVK.dylib */,
 				6B7F6A8324F2208900D7266E /* libvulkan.1.2.148.dylib */,
 				6B7F6A8424F2208900D7266E /* libvulkan.1.dylib */,
@@ -100,6 +119,8 @@
 		6B423B7924F2065B004D88C3 /* NedaEngine */ = {
 			isa = PBXGroup;
 			children = (
+				6B283DD324F5A914006CF02F /* shaders */,
+				6BAB5D9C24F5A4F200BDB64C /* compileShaders.sh */,
 				6B423B7A24F2065B004D88C3 /* main.cpp */,
 			);
 			path = NedaEngine;
@@ -124,6 +145,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B423B7E24F2065B004D88C3 /* Build configuration list for PBXNativeTarget "NedaEngine" */;
 			buildPhases = (
+				6B283DD424F5A983006CF02F /* CopyFiles */,
 				6B423B7424F2065B004D88C3 /* Frameworks */,
 				6B423B7524F2065B004D88C3 /* Copy Files */,
 				6B423B7324F2065B004D88C3 /* Sources */,

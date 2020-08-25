@@ -15,6 +15,7 @@
 #include <vector>
 #include <optional>
 #include <set>
+#include <fstream>
 
 
 const uint32_t WIDTH = 800;
@@ -292,6 +293,8 @@ private:
     }
     
     void createGraphicsPipeline(){
+        auto vertShaderCode = readFile("vert.spv");
+        auto fragShaderCode = readFile("frag.spv");
         
     }
     
@@ -550,6 +553,23 @@ private:
         std::cerr << "validation layer: " << pCallbackData->pMessage << std::endl;
 
         return VK_FALSE;
+    }
+    static std::vector<char> readFile(const std::string& fileName){
+        std::ifstream file(fileName, std::ios::ate | std::ios::binary);// ate is start reading at end of file, and binary to read as binary file, we start at end of file so we can tell how long it is
+        
+        if(!file.is_open()){
+            std::cout << "error in opening file " << fileName << std::endl;
+            throw std::runtime_error("failed to open file");
+        }
+        
+        size_t fileSize = (size_t) file.tellg(); // we know how big it is by where we are since we start at end
+        std::vector<char> buffer(fileSize);
+        file.seekg(0); // go to start and read file
+        file.read(buffer.data(), fileSize);
+        
+        file.close();
+        
+        return buffer;
     }
 };
 
