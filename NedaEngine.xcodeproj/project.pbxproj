@@ -325,13 +325,16 @@
 		6B423B7F24F2065B004D88C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T7J5U4EJJJ;
+				DYLIB_INSTALL_NAME_BASE = /Users/shahan/Desktop/NedaEngineccc/Products/usr/local/bin;
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/include/**",
 					"/Users/shahan/Documents/Projects/Vulken/macOS/include/**",
 				);
+				LD_DYLIB_INSTALL_NAME = /Users/shahan/Desktop/NedaEngineccc/Products/usr/local/bin;
 				LIBRARY_SEARCH_PATHS = (
 					"/usr/local/lib/**",
 					"/Users/shahan/Documents/Projects/Vulken/macOS/lib/**",
@@ -343,13 +346,16 @@
 		6B423B8024F2065B004D88C3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T7J5U4EJJJ;
+				DYLIB_INSTALL_NAME_BASE = /Users/shahan/Desktop/NedaEngineccc/Products/usr/local/bin;
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/include/**",
 					"/Users/shahan/Documents/Projects/Vulken/macOS/include/**",
 				);
+				LD_DYLIB_INSTALL_NAME = /Users/shahan/Desktop/NedaEngineccc/Products/usr/local/bin;
 				LIBRARY_SEARCH_PATHS = (
 					"/usr/local/lib/**",
 					"/Users/shahan/Documents/Projects/Vulken/macOS/lib/**",
